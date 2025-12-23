@@ -1,0 +1,17 @@
+name: CI Pipeline
+on: [push, pull_request]
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install & Lint Frontend
+        run: |
+          cd faktura-frontend
+          npm ci
+          npm run lint
+      - name: Install & Build Backend
+        run: |
+          cd faktura-backend
+          npm ci
+          npm run build
